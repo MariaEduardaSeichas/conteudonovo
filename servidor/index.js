@@ -39,7 +39,7 @@ app.get('/deslogar', async function(req, res){
 
 app.get('/listar', async function (req,res){
   const usuarios = await usuario.findAll();
-  res.render("usuarios")
+  res.json(usuarios)
 })
 
 
@@ -49,8 +49,12 @@ app.get('/cadastrar', async function(req, res){
 
 app.post('/cadastro', async function(req, res){
 const usuario_ = await usuario.create(req.body)
-  res.json()
+  res.json(usuario_)
 })
+
+app.get('/', async function(req, res){
+    res.render("deslogar")
+  })
 
 app.post('/logar', (req, res) => {
   if(req.body.usuario === 'maria' && req.body.senha === '79261'){
